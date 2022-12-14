@@ -4,6 +4,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import APIView, permission_classes
 from .models import Comment
 from .serializers import CommentSerializer
+from .models import Reply
+from .serializers import ReplySerializer
 
 # Create your views here.
 
@@ -26,10 +28,39 @@ class PostComment(APIView, IsAuthenticated):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request, pk):
+
+class CommentDetail(APIView, IsAuthenticated):
+    
+    def patch(self, request, comment_id):
         print(
             'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-        comments = Comment.objects.filter(Comment, pk=pk)
+        serializer = CommentSerializer(data=request.data)
+        likes_param = request.query_params.get('likes')
+        dislikes_param = request.query_params.get('dislikes')
+        # comments = Comment.objects.all()
+        if likes_param:
+            likes = Comment.objects.filter(comment_id=Comment.id)
+            likes += 1
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        elif dislikes_param:
+            dislikes = Comment.objects.filter(comment_id=Comment.id)
+            dislikes += 1
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+    def post(self, request, comment_id):
+        print(
+            'User', f"{request.user.id} {request.user.email} {request.user.username}")
+        serializer = ReplySerializer(data=request.data)
+        reply = Comment.objects.filter(comment_id=Comment.id)
+        serializer = ReplySerializer(reply)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+            
         
         
         

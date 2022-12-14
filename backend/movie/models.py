@@ -9,3 +9,10 @@ class Comment(models.Model):
     text = models.CharField(max_length=1000)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
+
+
+class Reply(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    text = models.CharField(max_length=255)
+
