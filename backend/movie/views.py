@@ -18,14 +18,6 @@ class UserComments(APIView, AllowAny):
 
 class PostComment(APIView, IsAuthenticated):
 
-    def get(self, request, pk):
-        print(
-            'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-        comments = Comment.objects.filter(pk=pk)
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
     def post(self, request):
         print(
             'User ', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -58,13 +50,22 @@ class CommentDetail(APIView, IsAuthenticated):
     def post(self, request, pk):
         print(
             'User', f"{request.user.id} {request.user.email} {request.user.username}")
-        reply = Comment.objects.filter(pk=pk)
-        # serializer = CommentSerializer(comment)
-        serializer = ReplySerializer(reply)
+        comment = Comment.objects.filter(pk=pk)
+        serializer = CommentSerializer(data=request.data)
+        serializer = ReplySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def get(self, request, pk):
+        print(
+            'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+        comments = Comment.objects.filter(pk=pk)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 # @api_view(['GET'])
