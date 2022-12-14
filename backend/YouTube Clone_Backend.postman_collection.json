@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "8a8f0736-6ce0-45d2-83be-949005faf008",
+		"name": "YouTube Clone_Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22504194"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"cloverfield_8\",\r\n    \"password\": \"trymeagain1\",\r\n    \"email\": \"lily1@yahoo.com\",\r\n    \"first_name\": \"Lily\",\r\n    \"last_name\": \"Morrow\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"cloverfield_8\",\r\n    \"password\": \"trymeagain1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"PASTE REFRESH TOKEN FROM LOGIN HERE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "POST comment (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMTU0NTA5LCJpYXQiOjE2NzAyOTA1MDksImp0aSI6ImNiMjc2M2M0MTk5YjQ2OWZhYzIyOTFhYzBjY2NhZjcxIiwidXNlcl9pZCI6NCwidXNlcm5hbWUiOiJjbG92ZXJmaWVsZF84IiwiZmlyc3RfbmFtZSI6IkxpbHkifQ.TrK4SkTS6x8IMLnq3myRPk1Ks6lVG9Z1gc0VBsUx1Sk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"video_id\": \"pixDj1NlRok\",\n    \"text\": \"Very informative!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/movie/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reply_to_comment (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMTU0NTA5LCJpYXQiOjE2NzAyOTA1MDksImp0aSI6ImNiMjc2M2M0MTk5YjQ2OWZhYzIyOTFhYzBjY2NhZjcxIiwidXNlcl9pZCI6NCwidXNlcm5hbWUiOiJjbG92ZXJmaWVsZF84IiwiZmlyc3RfbmFtZSI6IkxpbHkifQ.TrK4SkTS6x8IMLnq3myRPk1Ks6lVG9Z1gc0VBsUx1Sk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Very informative!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/movie/6/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET comment_by_ID (protected)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMTU0NTA5LCJpYXQiOjE2NzAyOTA1MDksImp0aSI6ImNiMjc2M2M0MTk5YjQ2OWZhYzIyOTFhYzBjY2NhZjcxIiwidXNlcl9pZCI6NCwidXNlcm5hbWUiOiJjbG92ZXJmaWVsZF84IiwiZmlyc3RfbmFtZSI6IkxpbHkifQ.TrK4SkTS6x8IMLnq3myRPk1Ks6lVG9Z1gc0VBsUx1Sk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/movie/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments by Video_ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/movie/CuCzJx74US0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								"CuCzJx74US0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Likes_dislikes (protected)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxOTA1NDA2LCJpYXQiOjE2NzEwNDE0MDYsImp0aSI6IjIyZDA5MDAzNzVkYTQ0MzY5MDYyYTMzODQ2MTIwNWU0IiwidXNlcl9pZCI6NCwidXNlcm5hbWUiOiJjbG92ZXJmaWVsZF84IiwiZmlyc3RfbmFtZSI6IkxpbHkifQ.fC21PXZcACGHcY7ySJn6r4XdOIrXTww7PsDvHSMq1Lg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"More interested in the Ancient Romans myself.\",\r\n    \"likes\": 1,\r\n    \"dislikes\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/movie/5/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
