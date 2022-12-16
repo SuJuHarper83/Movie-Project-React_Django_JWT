@@ -9,13 +9,14 @@ from .serializers import ReplySerializer
 
 # Create your views here.
 
+# Get comments by video ID
 class UserComments(APIView, AllowAny):
     def get(self, request, video_id):
         comments = Comment.objects.filter(video_id=video_id)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+# Post comment (protected)
 class PostComment(APIView, IsAuthenticated):
 
     def post(self, request):
@@ -30,6 +31,7 @@ class PostComment(APIView, IsAuthenticated):
 
 class CommentDetail(APIView, IsAuthenticated):
     
+# Attempted PATCH function to increase likes/dislikes
     def patch(self, request, comment_id):
         print(
             'User ', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -46,7 +48,7 @@ class CommentDetail(APIView, IsAuthenticated):
             dislikes += 1
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+# Attempted function to reply to comment by ID
     def post(self, request, pk):
         print(
             'User', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -58,7 +60,7 @@ class CommentDetail(APIView, IsAuthenticated):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# Attempt to get all following comments by comment ID
     def get(self, request, pk):
         print(
             'User ', f"{request.user.id} {request.user.email} {request.user.username}")
