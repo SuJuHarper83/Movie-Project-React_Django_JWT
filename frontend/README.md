@@ -68,3 +68,59 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Learning Objective
+
+Use React.js, Axios, and CSS to build a responsive YouTube clone app to search for YouTube videos via wrapper around Google YouTube API.
+
+Technologies
+
+React.js, CSS, Axios, Postman, YouTube Data API, Create React App
+
+API Documentation https://developers.google.com/youtube/v3/getting-started Google Developer Console: https://console.developers.google.com/ Embedded Player: https://developers.google.com/youtube/player_parameters REST Request Documentation: https://developers.google.com/youtube/v3/docs/search/list#http-request
+
+This is for searching for a video based on a query (API CALL #1):
+
+· https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}
+
+This is for searching for related videos (API CALL #2):
+
+· https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
+
+User Stories
+
+Total Unweighted Project Points: /60
+
+Total Weighted Project Points: /50
+
+(5 points): As a developer, I want to make good, consistent commits (at least 20 for both the backend and frontend).
+
+(5 points) As a developer, I want to use React.js best practices, which consists of creating function components and properly passing state around as props.
+
+(7.5 points) As a developer, I want to use CSS appropriately to make an aesthetically pleasing application.
+
+(10 points) As a developer, I want to use Axios to make GET requests to the YouTube API to pull in video data.
+
+(5 points) As a user, I want to be able to search for YouTube videos and see a page load with video options (represented as image thumbnails) related to my search. (API CALL #1)
+
+(5 points) As a user, I want to be able to click a video from the search, see a new page-load with the selected video, and play the YouTube video in an embedded video player using an iframe element.
+
+(5 points) As a user, I want to see the title and description of the currently playing video.
+
+(5 points) As a user, I want to see a grouping of videos related to my search next to the currently playing video. (API CALL #2)
+
+(5 points) As a user, I want to be able to select a video to be played from the list of related videos to my search that will become the currently playing video and load a new set of related videos.
+
+(7.5 points) As a registered user, I want to add a comment to a video in the comment section (Using Axios to make POST requests to my backend API). When comments are added to the backend for a specific video, I want to make a GET request every time that video is loaded as the currently playing video and see all comments for that video.
+
+NOTE: When viewing a video as a non-logged in guest, you should be able to see comments for the video but not be able to add a comment until logged in
+
+BONUS
+
+NOTE: Only attempt once both the backend and frontend are feature complete for non-bonus user stories
+
+(5 points) As a registered user, I want to like or dislike a comment in the comments section (Using Axios to make PUT requests to my backend API).
+
+(7.5 points) As a registered user, I want to reply to another comment in the comments section (Using Axios to make POST requests to my backend API).
