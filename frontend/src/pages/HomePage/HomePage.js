@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-
+import { DATA } from "../../localData";
 import axios from "axios";
 
 const HomePage = () => {
