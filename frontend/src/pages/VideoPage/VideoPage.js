@@ -11,7 +11,6 @@ const VideoPage = () => {
     //TODO: Add an AddCars Page to add a car for a logged in user's garage
     const [user, token] = useAuth();
     
-  
     useEffect(() => {
      
     }, [token]);

@@ -1,4 +1,4 @@
-export const DATA = [
+const DATA = [
     {
         "kind": "youtube#searchListResponse",
         "etag": "7MVVPhcKad5Iirwgqtdr5yLFvms",
@@ -182,3 +182,6 @@ export const DATA = [
         ]
     }
 ]
+
+
+export default DATA

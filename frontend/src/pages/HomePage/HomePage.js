@@ -9,25 +9,48 @@ const HomePage = () => {
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
-  
+  const [videos, setVideos] = useState(DATA);
 
-  useEffect(() => {
-   
-  }, [token]);
+  useEffect(() => 
+  {}, [token]);
 
+  const setVideos = async () => {
+    try {
+      let response = await axios.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        {
+          headers: {
+            Authorization: "Bearer" + token,
+          },
+        }
+      );
+      setVideos(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 
   return (
-    <div className="container">
-      <h1>Home Page for {user.username}!</h1>
-    </div>
+    <>
+      <div className="container">
+        <h1>Home Page for {user.username}!</h1>
+      </div>
+      <div className="player">
+        <h1>${videos.title}</h1>
+        <iframe title="ytplayer"
+          type="text/html"
+          width="640"
+          height="360"
+          src="https://www.youtube.com/embed/UnNLDaaJvLU?autoplay=1"
+          frameborder="0"
+        ></iframe>
+        <h1>${videos.description}</h1>
+      </div>
+    </>
   );
 };
 
 export default HomePage;
-
-
-
-
 
 // const HomePage = () => {
 //   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -51,7 +74,6 @@ export default HomePage;
 // useEffect(() => {
 //   fetchCars();
 // }, [token]);
-
 
 // return (
 //   <div className="container">

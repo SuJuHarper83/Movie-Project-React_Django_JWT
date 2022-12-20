@@ -2,8 +2,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { KEY } from "./localKey";
-import { DATA } from "./localData";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
