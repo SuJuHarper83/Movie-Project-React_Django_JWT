@@ -29,14 +29,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/video_page"
+        {/* <Route
+          path="/video_page/:videoId"
           element={
             <PrivateRoute>
               <VideoPage />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

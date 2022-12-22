@@ -5,6 +5,7 @@
 // import axios from "axios";
 
 
+// Video page will have the large player (clicked on by through the homepage), and the search results to the side (5 in total)
 // const VideoPage = () => {
 //     // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
 //     // The "token" value is the JWT token that you will send in the header of any request requiring authentication

@@ -7,6 +7,12 @@ import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import { KEY } from "../../localKey";
 import axios from "axios";
 
+
+// The homepage will have a search bar to gather search results (5 in total) - then the user will click one of the videos, and it
+// will bring them to the video page where the VideoID will come up in Iframe, and related videos to the side
+// NOTE: the search page and the video page do not need the Bearer and token properties - the comments will.
+// { videoId } = useParams();
+
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
@@ -15,6 +21,7 @@ const HomePage = () => {
   const [user, token] = useAuth();
   const [videos, setVideos] = useState([]);
   const [videoId, setVideoId] = useState("cWGvPjNPo1U")
+  const [searchTerm, setSearchTerm] = useState("bob ross")
 
   useEffect(() => {
     getVideos();
@@ -23,17 +30,13 @@ const HomePage = () => {
   async function getVideos(){
     try {
       let response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&relatedToVideoId=cWGvPjNPo1U&key=${KEY}`),
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${searchTerm}&key=${KEY}`)
+      console.log(response.data.items);
       setVideos(response.data.items);
     } catch (error) {
       console.log(error.response.data);
     }
-  };
+  }
 
   return (
     <>
@@ -42,17 +45,10 @@ const HomePage = () => {
       </div>
       <button onClick={()=>{getVideos()}}>Get Vids!</button>
         <div className="player">
-          <h1>${videos.title}</h1>
-          <iframe title="ytplayer">
-            type="text/html"
-            width="640"
-            height="360"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
-            frameborder="0"
-          </iframe>
+         
         </div>
       <div>
-      <AddComment />
+      {/* <AddComment /> */}
       </div>
       <div>
         <RelatedVideos VideoArray={videos} />
@@ -61,6 +57,16 @@ const HomePage = () => {
   );
 
 }
+{/* <iframe title="ytplayer">
+type="text/html"
+width="640"
+height="360"
+src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
+frameborder="0"
+</iframe> */}
+
+
+
 
 
 
