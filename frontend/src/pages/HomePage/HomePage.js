@@ -2,19 +2,24 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { DATA } from "../../localData";
+import AddComment from "../../components/AddComment/AddComment";
 import axios from "axios";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
+  @param {Array} videos
+  @param {Object[]} video
+  
   const [user, token] = useAuth();
   const [videos, setVideos] = useState(DATA);
 
-  useEffect(() => 
-  {}, [token]);
+  useEffect(() => {
+    // getVideos();
+  }, [token]);
 
-  const setVideos = async () => {
+  const getVideos = async () => {
     try {
       let response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",
@@ -45,6 +50,12 @@ const HomePage = () => {
           frameborder="0"
         ></iframe>
         <h1>${videos.description}</h1>
+      </div>
+      <div>
+      <AddComment />
+      </div>
+      <div>
+        
       </div>
     </>
   );
