@@ -1,35 +1,35 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { DATA } from "../../localData";
+// import { DATA } from "../../localData";
 import AddComment from "../../components/AddComment/AddComment";
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import { KEY } from "../../localKey";
 import axios from "axios";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
-  @param {Array} videos
-  @param {Object[]} video
   
   const [user, token] = useAuth();
-  const [videos, setVideos] = useState(DATA);
+  const [videos, setVideos] = useState([]);
+  const [videoId, setVideoId] = useState("cWGvPjNPo1U")
 
   useEffect(() => {
-    // getVideos();
+    getVideos();
   }, [token]);
 
-  const getVideos = async () => {
+  async function getVideos(){
     try {
       let response = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&relatedToVideoId=cWGvPjNPo1U&key=${KEY}`),
         {
           headers: {
-            Authorization: "Bearer" + token,
+            Authorization: "Bearer " + token,
           },
         }
-      );
-      setVideos(response.data);
+      setVideos(response.data.items);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -40,28 +40,29 @@ const HomePage = () => {
       <div className="container">
         <h1>Home Page for {user.username}!</h1>
       </div>
-      <div className="player">
-        <h1>${videos.title}</h1>
-        <iframe title="ytplayer"
-          type="text/html"
-          width="640"
-          height="360"
-          src="https://www.youtube.com/embed/UnNLDaaJvLU?autoplay=1"
-          frameborder="0"
-        ></iframe>
-        <h1>${videos.description}</h1>
-      </div>
+      <button onClick={()=>{getVideos()}}>Get Vids!</button>
+        <div className="player">
+          <h1>${videos.title}</h1>
+          <iframe title="ytplayer">
+            type="text/html"
+            width="640"
+            height="360"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
+            frameborder="0"
+          </iframe>
+        </div>
       <div>
       <AddComment />
       </div>
       <div>
-        
+        <RelatedVideos VideoArray={videos} />
       </div>
     </>
   );
-};
 
-export default HomePage;
+}
+
+
 
 // const HomePage = () => {
 //   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -99,4 +100,4 @@ export default HomePage;
 // );
 // };
 
-// export default HomePage;
+export default HomePage;
