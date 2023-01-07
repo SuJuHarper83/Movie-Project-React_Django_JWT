@@ -1,9 +1,15 @@
 import React from "react";
+import VideoList from "../VideoList/VideoList";
 
 const RelatedVideos = ({VideoArray}) => {
+
+    function refreshPage(){
+        window.location.reload(false);
+    }
+
     return (
-        <ul>
-            {VideoArray.map(el => <li>{el.snippet.title}</li>)}
+        <ul onClick={refreshPage}>
+            {VideoArray.map(el => <VideoList key={el.id.videoId} video = {el}/>)}
         </ul>
     );
 }

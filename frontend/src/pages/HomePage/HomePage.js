@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-// import { DATA } from "../../localData";
-import AddComment from "../../components/AddComment/AddComment";
-import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import "./HomePage.css";
+import VideoResults from "../../components/VideoResults/VideoResults";
 import { KEY } from "../../localKey";
 import axios from "axios";
+// import VideoList from "../../components/VideoList/VideoList";
 
 
 // The homepage will have a search bar to gather search results (5 in total) - then the user will click one of the videos, and it
@@ -20,8 +20,7 @@ const HomePage = () => {
   
   const [user, token] = useAuth();
   const [videos, setVideos] = useState([]);
-  const [videoId, setVideoId] = useState("cWGvPjNPo1U")
-  const [searchTerm, setSearchTerm] = useState("bob ross")
+  const [searchTerm, setSearchTerm] = useState("bob ross");
 
   useEffect(() => {
     getVideos();
@@ -30,7 +29,7 @@ const HomePage = () => {
   async function getVideos(){
     try {
       let response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${searchTerm}&key=${KEY}`)
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${searchTerm}&key=${KEY}`, (videos))
       console.log(response.data.items);
       setVideos(response.data.items);
     } catch (error) {
@@ -38,36 +37,31 @@ const HomePage = () => {
     }
   }
 
+    function handleSubmit(event) {
+      event.preventDefault();
+      getVideos()
+    }
+  
+
   return (
     <>
       <div className="container">
         <h1>Home Page for {user.username}!</h1>
       </div>
-      <button onClick={()=>{getVideos()}}>Get Vids!</button>
-        <div className="player">
-         
-        </div>
-      <div>
-      {/* <AddComment /> */}
+      <div className="SearchBar">
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
+        <button className="search-btn" type="submit">Search</button>
+        </form>
+      
       </div>
       <div>
-        <RelatedVideos VideoArray={videos} />
+      <VideoResults VidArray={videos} />
       </div>
     </>
   );
 
 }
-{/* <iframe title="ytplayer">
-type="text/html"
-width="640"
-height="360"
-src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
-frameborder="0"
-</iframe> */}
-
-
-
-
 
 
 // const HomePage = () => {

@@ -1,5 +1,6 @@
 // General Imports
 import React from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -21,22 +22,8 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        {/* <Route
-          path="/video_page/:videoId"
-          element={
-            <PrivateRoute>
-              <VideoPage />
-            </PrivateRoute>
-          }
-        /> */}
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/:videoId" element={<VideoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

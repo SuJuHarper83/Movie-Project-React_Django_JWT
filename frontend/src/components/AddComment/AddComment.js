@@ -18,12 +18,14 @@ const AddComment = (props) => {
                 comment: comment,
             };
 
-            const response  = await axios.post("api/movie/", NewCommentObject, {headers: {Authorization: "Bearer " + token}});
+            async function response() {
+                await axios.post("api/movie/", NewCommentObject, {headers: {Authorization: "Bearer " + token}});
             props.NewPostProperty(NewCommentObject)
-
+            
             useNavigate ("/");
-
-        } catch (error) {
+                }
+            console.log(NewCommentObject);
+            } catch (error) {
             console.log(error.message);
         }
     }
