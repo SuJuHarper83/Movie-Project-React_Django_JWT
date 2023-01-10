@@ -38,7 +38,7 @@ return (
             <br />
             <label>Post</label>
             <input type="comment" value={comment} onChange={(event) => setComment(event.target.value)} />
-            <button type="post" className="btn-btn-primary">Post</button>
+            <button type="post" className="button">Post</button>
         </div>
     </form>
     );

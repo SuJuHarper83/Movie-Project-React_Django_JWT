@@ -9,7 +9,6 @@ width: 200px;
 padding: 1rem;
 display: grid;
 column-gap: 1px;
-grid-template-columns: auto;
 content: center;
 box-shadow: 2px 8px 16px -2px rgba(19, 57, 94, 0.486);
 margin: 1rem;
