@@ -5,6 +5,7 @@ import "./HomePage.css";
 import VideoResults from "../../components/VideoResults/VideoResults";
 import { KEY } from "../../localKey";
 import axios from "axios";
+import "./HomePage.css"
 // import VideoList from "../../components/VideoList/VideoList";
 
 
@@ -19,8 +20,179 @@ const HomePage = () => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   
   const [user, token] = useAuth();
-  const [videos, setVideos] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("bob ross");
+  const [videos, setVideos] = useState([
+    {
+        "kind": "youtube#searchResult",
+        "etag": "RDb9t_3R2p3A0KyfI_JoeQeBIrs",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "uHKfrz65KSU"
+        },
+        "snippet": {
+            "publishedAt": "2019-12-11T19:43:05Z",
+            "channelId": "UC8hC-augAnujJeprhjI0YkA",
+            "title": "Baby Cats - Cute and Funny Cat Videos Compilation #8 | Aww Animals",
+            "description": "Watching funny baby cats is the hardest try not to laugh challenge. Baby cats are amazing creature because they are the cutest ...",
+            "thumbnails": {
+                "default": {
+                    "url": "https://i.ytimg.com/vi/uHKfrz65KSU/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium": {
+                    "url": "https://i.ytimg.com/vi/uHKfrz65KSU/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high": {
+                    "url": "https://i.ytimg.com/vi/uHKfrz65KSU/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                }
+            },
+            "channelTitle": "Aww Animals",
+            "liveBroadcastContent": "none",
+            "publishTime": "2019-12-11T19:43:05Z"
+        }
+    },
+    {
+        "kind": "youtube#searchResult",
+        "etag": "XScKhRRQcDLvkpHbizhq1B5GzyU",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "tpiyEe_CqB4"
+        },
+        "snippet": {
+            "publishedAt": "2020-04-10T16:00:28Z",
+            "channelId": "UCzn2gx8zzhF0A4Utk8TEDNQ",
+            "title": "Cute and Funny Cat Videos to Keep You Smiling! 🐱",
+            "description": "Hoomans! Rufus here! Cats are my best frens! I made this brand new compilation for you of my favorite Cat, Kittens and even ...",
+            "thumbnails": {
+                "default": {
+                    "url": "https://i.ytimg.com/vi/tpiyEe_CqB4/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium": {
+                    "url": "https://i.ytimg.com/vi/tpiyEe_CqB4/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high": {
+                    "url": "https://i.ytimg.com/vi/tpiyEe_CqB4/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                }
+            },
+            "channelTitle": "Rufus",
+            "liveBroadcastContent": "none",
+            "publishTime": "2020-04-10T16:00:28Z"
+        }
+    },
+    {
+        "kind": "youtube#searchResult",
+        "etag": "bOK2Rbs5kq4c_cN8DmEkHdfMqos",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "jHWKtQHXVJg"
+        },
+        "snippet": {
+            "publishedAt": "2019-11-01T01:35:36Z",
+            "channelId": "UC8hC-augAnujJeprhjI0YkA",
+            "title": "Baby Cats - Cute and Funny Baby Cat Videos Compilation",
+            "description": "Baby cats are amazing creature because they are the cutest and most funny. I challenge anyone watching this video to try not to ...",
+            "thumbnails": {
+                "default": {
+                    "url": "https://i.ytimg.com/vi/jHWKtQHXVJg/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium": {
+                    "url": "https://i.ytimg.com/vi/jHWKtQHXVJg/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high": {
+                    "url": "https://i.ytimg.com/vi/jHWKtQHXVJg/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                }
+            },
+            "channelTitle": "Aww Animals",
+            "liveBroadcastContent": "none",
+            "publishTime": "2019-11-01T01:35:36Z"
+        }
+    },
+    {
+        "kind": "youtube#searchResult",
+        "etag": "pMmOajap__7PU73wp41MtGcoA6s",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "ZuRLOlB4N8U"
+        },
+        "snippet": {
+            "publishedAt": "2021-11-09T17:00:24Z",
+            "channelId": "UCTnomncAH9Gm5bjmCNIDjjA",
+            "title": "Cute Animals for When You are Stressed",
+            "description": "Hope you enjoy these cute animal videos. I'm very passionate about animals, dogs, cats, whatever you name it! This channel is ...",
+            "thumbnails": {
+                "default": {
+                    "url": "https://i.ytimg.com/vi/ZuRLOlB4N8U/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium": {
+                    "url": "https://i.ytimg.com/vi/ZuRLOlB4N8U/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high": {
+                    "url": "https://i.ytimg.com/vi/ZuRLOlB4N8U/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                }
+            },
+            "channelTitle": "PetWard",
+            "liveBroadcastContent": "none",
+            "publishTime": "2021-11-09T17:00:24Z"
+        }
+    },
+    {
+        "kind": "youtube#searchResult",
+        "etag": "kMe-yG1uNUbOrtdIfWsnOg2XI40",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "6QzcF3xdoF8"
+        },
+        "snippet": {
+            "publishedAt": "2021-11-28T17:00:05Z",
+            "channelId": "UCTnomncAH9Gm5bjmCNIDjjA",
+            "title": "More Cute Animals for When You are Stressed",
+            "description": "Hope you enjoy these cute animal videos. I'm very passionate about animals, dogs, cats, whatever you name it! This channel is ...",
+            "thumbnails": {
+                "default": {
+                    "url": "https://i.ytimg.com/vi/6QzcF3xdoF8/default.jpg",
+                    "width": 120,
+                    "height": 90
+                },
+                "medium": {
+                    "url": "https://i.ytimg.com/vi/6QzcF3xdoF8/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                },
+                "high": {
+                    "url": "https://i.ytimg.com/vi/6QzcF3xdoF8/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                }
+            },
+            "channelTitle": "PetWard",
+            "liveBroadcastContent": "none",
+            "publishTime": "2021-11-28T17:00:05Z"
+        }
+    }
+]);
+  const [searchTerm, setSearchTerm] = useState("cute cats");
 
   useEffect(() => {
     getVideos();
@@ -45,13 +217,13 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="title-container-a">
         <h1>Home Page for {user.username}!</h1>
       </div>
-      <div className="SearchBar">
+      <div className="search-bar">
         <form onSubmit={handleSubmit}>
           <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
-        <button className="search-btn" type="submit">Search</button>
+        <button className="button" type="submit">Search</button>
         </form>
       
       </div>

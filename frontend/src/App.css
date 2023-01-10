@@ -20,11 +20,12 @@ p {
 button {
   background-color: transparent;
   border: 2px solid steelblue;
+  border-radius: 10px;
   color: steelblue;
   font-size: 1rem;
   font-family: inherit;
   max-width: 100px;
-  padding: 0.5rem 0.5rem;
+  padding: 0.2rem 0.2rem;
 }
 
 button:hover {
